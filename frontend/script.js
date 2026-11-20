@@ -1,6 +1,5 @@
-// Kod wykonuje się w przeglądarce użytkownika, a nie w kontenerze frontendu,
-// dlatego backend jest pod adresem widocznym z hosta (port wystawiony przez -p 5000:5000)
-const API_URL = "http://localhost:5000/check";
+// Strona i API są pod tym samym adresem - nginx przekazuje /api/ do backendu
+const API_URL = "/api/check";
 
 // SHA-1 liczony w przeglądarce - hasło w postaci jawnej nie opuszcza komputera
 async function sha1(text) {
@@ -28,3 +27,5 @@ document.getElementById("check-form").addEventListener("submit", async function 
       : "Tego hasła nie ma w próbce wycieków (co nie znaczy, że jest bezpieczne).";
   } catch (err) {
     result.textContent = "Brak połączenia z backendem.";
+  }
+});
